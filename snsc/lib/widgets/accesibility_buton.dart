@@ -40,7 +40,8 @@ class _AccessibilityButonState extends State<AccessibilityButon> {
         changeSetting();
       },
       child: Container(
-        height: 500,
+        height: 150,
+        width: 125,
         decoration: BoxDecoration(
           color: Colors.white,
           shape: BoxShape.rectangle,
@@ -53,10 +54,13 @@ class _AccessibilityButonState extends State<AccessibilityButon> {
               height: 80,
               child: widget.iconList[index],
             ),
-            Text(
-              widget.texts[index],
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+            SizedBox(
+              height: 40,
+              child: Text(
+                widget.texts[index],
+                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
             ),
             const SizedBox(
               height: 5,

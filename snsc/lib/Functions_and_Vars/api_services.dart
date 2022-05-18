@@ -19,6 +19,7 @@ class APIService {
   static Future<String> signup(User user, BuildContext context) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.signupAPI);
@@ -56,6 +57,7 @@ class APIService {
       BuildContext context, bool wantsBiometrics) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     final _data = <String, dynamic>{};
@@ -118,7 +120,8 @@ class APIService {
 
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
-      'authorization': '${user.token}'
+      'authorization': '${user.token}',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.userAPI);
@@ -140,7 +143,8 @@ class APIService {
 
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
-      'authorization': '${user.token}'
+      'authorization': '${user.token}',
+      'Access-Control-Allow-Origin': '*'
     };
 
     final _data = <String, dynamic>{};
@@ -209,7 +213,8 @@ class APIService {
 
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
-      'authorization': '${user.token}'
+      'authorization': '${user.token}',
+      'Access-Control-Allow-Origin': '*'
     };
 
     final _data = <String, dynamic>{};
@@ -241,6 +246,7 @@ class APIService {
   static Future<List<Organization>> getAllOrganizations() async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.organizationsAPI);
@@ -254,6 +260,7 @@ class APIService {
   static Future<Organization> getOrganization(String id) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.organizationsAPI + '/$id');
@@ -266,6 +273,7 @@ class APIService {
   static Future<String> saveOrganization(Organization organization) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.organizationsAPI);
@@ -278,6 +286,7 @@ class APIService {
   static Future<String> deleteOrganization(String id) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.organizationsAPI + '/$id');
@@ -290,6 +299,7 @@ class APIService {
       String id, Organization organization) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.organizationsAPI + '/$id');
@@ -307,7 +317,8 @@ class APIService {
 
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
-      'authorization': '${user.token}'
+      'authorization': '${user.token}',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(
@@ -325,7 +336,8 @@ class APIService {
 
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
-      'authorization': '${user.token}'
+      'authorization': '${user.token}',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL,
@@ -343,7 +355,8 @@ class APIService {
 
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
-      'authorization': '${user.token}'
+      'authorization': '${user.token}',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.userFavoritesAPI);
@@ -358,6 +371,7 @@ class APIService {
       String organizationName) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     final _data = <String, String>{};
@@ -382,6 +396,7 @@ class APIService {
       String? age}) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     final _data = <String, dynamic>{};
@@ -418,6 +433,7 @@ class APIService {
   static Future<List<Filter>> getDisabilityFilters() async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url =
@@ -432,6 +448,7 @@ class APIService {
   static Future<List<Filter>> getServiceFilters() async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.filterAPI + "/services");
@@ -445,6 +462,7 @@ class APIService {
   static Future<List<Filter>> getStateFilters() async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.filterAPI + "/states");
@@ -458,6 +476,7 @@ class APIService {
   static Future<List<Filter>> getInsuranceFilters() async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.filterAPI + "/insurances");
@@ -472,6 +491,7 @@ class APIService {
   static Future<List<Faq>> getFaqs() async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.faqAPI);
@@ -485,6 +505,7 @@ class APIService {
   static Future<String> saveFaq(Faq faq) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.faqAPI);
@@ -497,6 +518,7 @@ class APIService {
   static Future<String> deleteFaq(String id) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.faqAPI + '/$id');
@@ -508,6 +530,7 @@ class APIService {
   static Future<String> updateFaq(String id, Faq faq) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
     var url = Uri.http(ApiConfig.rootURL, ApiConfig.faqAPI + '/$id');

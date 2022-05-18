@@ -93,7 +93,6 @@ class _ResourceCardState extends State<ResourceCard> {
                 } else {
                   await APIService.saveToFavorites(widget.org.id!);
                 }
-
                 if (widget.reloadFavoritesPage == null) {
                   return !isLiked;
                 } else {
@@ -103,7 +102,6 @@ class _ResourceCardState extends State<ResourceCard> {
               },
             );
           } else {
-            // user is not logged in so remove the heart
             child = Container();
           }
         }
@@ -117,7 +115,8 @@ class _ResourceCardState extends State<ResourceCard> {
       child: Card(
           color: Pallete.cardBackground,
           elevation: 6,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           child: InkWell(
             splashColor: Colors.green.withAlpha(30),
             onTap: () {
@@ -194,8 +193,8 @@ class _ResourceCardState extends State<ResourceCard> {
                                   icon: Icons.web_outlined,
                                   labelText: "Website",
                                   onPressed: () => setState(() {
-                                        _launched = _launchInBrowser(
-                                            widget.org.primaryWebsite as String);
+                                        _launched = _launchInBrowser(widget
+                                            .org.primaryWebsite as String);
                                       }))
                               : const SizedBox(),
                         ],

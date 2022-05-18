@@ -308,8 +308,8 @@ class _SearchPageState extends State<SearchPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => ResultsPage(
-                                      searchText: searchText.text == ""
-                                          ? ""
+                                      searchText: searchText.text.isEmpty
+                                          ? " "
                                           : searchText.text,
                                     )),
                           );

@@ -37,7 +37,7 @@ class _ResultsPageState extends State<ResultsPage> {
   late Future<List<Organization>> entries;
 
   Future<List<Organization>> searchByText() async {
-    if (widget.searchText == "") {
+    if (widget.searchText == " ") {
       return await APIService.getAllOrganizations();
     } else {
       return await APIService.searchByText(widget.searchText!);
@@ -80,7 +80,6 @@ class _ResultsPageState extends State<ResultsPage> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
 
     var futureBuilder = FutureBuilder(
       future: entries,
@@ -115,16 +114,20 @@ class _ResultsPageState extends State<ResultsPage> {
                     child: SingleChildScrollView(
                       child: ListView.builder(
                         shrinkWrap: true,
-                          key: const PageStorageKey<String>('results_page'),
-                          scrollDirection: Axis.vertical,
-                          padding: const EdgeInsets.all(8),
-                          itemCount: snapshot.data.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return ResourceCard(
+                        key: const PageStorageKey<String>('results_page'),
+                        scrollDirection: Axis.vertical,
+                        padding: const EdgeInsets.all(8),
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return SizedBox(
+                            width: 400,
+                            child: ResourceCard(
                               org: snapshot.data[index],
                               reloadAllPages: refresh,
-                            );
-                          },),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ],
@@ -225,7 +228,11 @@ class _ResultsPageState extends State<ResultsPage> {
             const SizedBox(
               height: 5,
             ),
-            Expanded(child: PageStorage(bucket: bucketGlobal, child: futureBuilder)),
+            Expanded(
+                child: SizedBox(
+                    width: 600,
+                    child: PageStorage(
+                        bucket: bucketGlobal, child: futureBuilder))),
           ]),
         ),
       ),

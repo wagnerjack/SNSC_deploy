@@ -18,4 +18,9 @@ class ApiConfig {
   // filter functions
   static const String filterAPI = '/api/filters';
   static const String faqAPI = '/api/faq';
+
+  // image functions
+  static const String herokuUploads =
+      'http://snsc-api.herokuapp.com/api/images';
+  static const String localUploads = 'http://localhost:9090/api/images';
 }

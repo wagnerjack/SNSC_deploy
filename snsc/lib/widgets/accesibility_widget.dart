@@ -20,51 +20,27 @@ class _AccesibilityWidgetState extends State<AccesibilityWidget> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       backgroundColor: const Color.fromARGB(255, 239, 241, 245),
       content: SizedBox(
-        width: 600,
-        height: 300,
-        child: GridView(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
-          shrinkWrap: true,
+        width: 800,
+        height: 200,
+        child: Row(
           children: const [
             AccessibilityButon(texts: [
-              "Text Size",
-              "Text Size",
-              "Text Size",
-              "Text Size"
+              "Text Spacing",
+              "Light Spacing",
+              "Moderate Spacing",
+              "Heavy Spacing"
             ], iconList: [
-              Icon(Icons.text_fields_sharp, size: 50),
+              Icon(Icons.format_line_spacing, size: 50),
               Icon(Icons.text_fields_sharp, size: 20),
               Icon(Icons.text_fields_sharp, size: 50),
               Icon(Icons.text_fields_sharp, size: 70),
             ]),
-            AccessibilityButon(texts: [
-              "Contrast",
-              "Invert Colors",
-              "Light Contrast",
-              "Dark Contrast"
-            ], iconList: [
-              Icon(Icons.contrast, size: 70),
-              Icon(Icons.invert_colors, size: 70),
-              Icon(Icons.light_mode, size: 70),
-              Icon(Icons.dark_mode, size: 70),
-            ]),
+            Spacer(),
             AccessibilityButon(texts: [
               "Dyslexia Friendly",
               "Dyslexia Friendly",
               "Legible Fonts",
               "Default",
-            ], iconList: [
-              Icon(Icons.abc, size: 70),
-              Icon(Icons.abc, size: 70),
-              Icon(Icons.abc, size: 70),
-              Icon(Icons.abc, size: 70),
-            ]),
-            AccessibilityButon(texts: [
-              "Saturation",
-              "Low Saturation",
-              "High saturation",
-              "Desaturate"
             ], iconList: [
               Icon(Icons.abc, size: 70),
               Icon(Icons.abc, size: 70),
@@ -79,7 +55,9 @@ class _AccesibilityWidgetState extends State<AccesibilityWidget> {
             style: ElevatedButton.styleFrom(
               primary: Pallete.buttonGreen,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             child: const Text(
               "Update Settings",
               style:

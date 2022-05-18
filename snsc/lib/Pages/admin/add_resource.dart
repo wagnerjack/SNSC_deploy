@@ -1,9 +1,14 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:snsc/config/pallete.dart';
 import 'package:snsc/widgets/all_widgets.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
+import 'package:snsc/config/api_config.dart';
 
 import '../all_pages.dart';
 
@@ -16,6 +21,8 @@ class AddResource extends StatefulWidget {
 
 class _AddResourceState extends State<AddResource> {
   File? image;
+  String? imagePath;
+  Future<ImageProvider>? imageBytes;
 
   TextEditingController name = TextEditingController();
   TextEditingController description = TextEditingController();
@@ -25,6 +32,8 @@ class _AddResourceState extends State<AddResource> {
   TextEditingController contactPersonName = TextEditingController();
   TextEditingController contactPersonRole = TextEditingController();
 
+  static var server = http.Client();
+
   Future pickImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -33,10 +42,45 @@ class _AddResourceState extends State<AddResource> {
       final imageTemporary = File(image.path);
       setState(() {
         this.image = imageTemporary;
+        this.imagePath = image.path;
+        print(imagePath);
       });
     } on Exception catch (e) {
       print("failed to pick image: $e");
     }
+  }
+
+  uploadImage() async {
+    if (image != null) {
+      var request =
+          http.MultipartRequest('POST', Uri.parse(ApiConfig.localUploads));
+      request.files.add(await http.MultipartFile.fromPath('image', imagePath!));
+      var res = await request.send();
+      print(res.reasonPhrase);
+    }
+  }
+
+  Future<ImageProvider> getImage() async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url = Uri.http(
+        'localhost:9090', '/api/images/aa740a5e1fa247aefb04f51c90e49475');
+    var response = await server.get(url, headers: requestHeaders);
+    print(response.bodyBytes);
+    print(response.body);
+    await File(
+            '/Users/johnkariuki/Documents/snsc/snsc/lib/Pages/admin/image.png')
+        .writeAsBytes(response.bodyBytes);
+
+    return Image.memory(Uint8List.fromList(response.bodyBytes)).image;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    imageBytes = getImage();
   }
 
   @override
@@ -213,7 +257,9 @@ class _AddResourceState extends State<AddResource> {
                 ),
                 RoundedRectangleButton(
                     width: size.width * 0.8,
-                    onPressed: () {},
+                    onPressed: () {
+                      uploadImage();
+                    },
                     text: "Create Resource",
                     buttoncolor: Pallete.buttonGreen,
                     height: 50)

@@ -98,7 +98,7 @@ class Organization {
 
   factory Organization.fromJson(Map<String, dynamic> Json) {
     Organization newOrganization = Organization(
-      id: Json['id'],
+      id: Json['id'] ?? Json['_id'],
       name: Json['name'],
       descriptions: Json['descriptions'],
       primaryContactName: Json['primaryContactName'],
